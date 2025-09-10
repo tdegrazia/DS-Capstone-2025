@@ -1,0 +1,27 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[style=apa,backend=biber]{biblatex}
+\usepackage{hyperref}
+
+
+\addbibresource{references.bib}
+
+\title{Annotated Bibliography of Sources for a Personalized Medicine Dashboard}
+\author{Tanner DeGrazia}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Purpose of References}
+
+While I am still in the process of collecting references and data sources, this bibliography displays current key sources that mostly exist in personalized medicine, genomics, and the application of machine learning to health data. Two primary articles provide conceptual foundations: Goetz and Schork (2018) \cite{goetz2018} lays the foundation for my future work through introducing personalized medicine and its challenges, while Brittain, Scott, and Thomas (2017) \cite{brittain2017} trace the usage of genomic approaches in clinical care.  
+
+After introducing the papers who lay basic foundations in the topic at hand, I focus on more applied perspectives such as, Wang et al.\ (2023) \cite{wang2023} who describes the use of electronic health records as research data within machine learning as I plan on integrating EHR into the dashboard being built (which a dataset is still needed). Additionally, Iyengar et al.\ (2022) \cite{iyengar2022} discuss how emerging Industry~5.0 technologies influence orthopedic applications which is nice to put in comparison for the scope moving forward with technology.  
+
+Finally, the human genome assembly GRCh38.p14 (Genome Reference Consortium, 2022) \cite{ncbi2022} serves as the primary data source for genomic analyses. Another dataset I will lean on is Fuller (2020) \cite{fuller2020} which provides the dataset we will use to explore wearable-device-based activity classification. These datasets will allow the dashboard to provide insightful feedback to practitioners.  
+
+\printbibliography[title={References}]
+
+\end{document}
