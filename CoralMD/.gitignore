@@ -1,0 +1,16 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# data/secrets
+.streamlit/secrets.toml
+*.env
+data/*.parquet
+data/*.feather
+
+# notebooks (if you add later)
+.ipynb_checkpoints/
+
+# os cruft
+.DS_Store
