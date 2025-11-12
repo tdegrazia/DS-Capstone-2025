@@ -1,0 +1,177 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{fancyhdr}
+\usepackage{float}
+
+
+\setstretch{1.5}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt} % Remove top line
+\renewcommand{\footrulewidth}{0pt} % Remove bottom line
+\rfoot{\thepage}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\LARGE \textbf{CoralMD: A Multi-Modal Dashboard for Personalized Medicine}}\\[2em]
+    {\large \textbf{Tanner DeGrazia}}\\[1em]
+    {\large Pomona College}\\[0.5em]
+    {\large Data Science Capstone Project}\\[0.5em]
+    {\large DS 190: Senior Seminar}\\[0.5em]
+    {\large November 2025}\\[5em]
+    \vfill
+    
+\end{titlepage}
+
+
+\section*{Abstract}
+Modern healthcare systems often remain reactive, addressing disease only after symptoms appear. 
+CoralMD is a data-driven prototype dashboard that integrates genomic, wearable, and electronic health record (EHR) data to enable interpretable, proactive healthcare insights. 
+By combining machine learning and ethical data practices, the system aims to make precision medicine transparent, equitable, and actionable. 
+This paper outlines the motivation, data architecture, and proposed design for CoralMD, along with a review of current literature and ethical challenges surrounding personalized healthcare technologies.
+
+
+\section{Introduction}
+
+\indent Modern healthcare is a system that is focused on reacting to disease. Cancer, Heart Disease, Neurodegenerative disease, and Diabetes are four of the leading causes of death in the United States. None of them are treated in a manner where prevention is the goal. Our current healthcare system is largely reactive, intervening only after illness occurs, despite an extreme growth in accessible biological and lifestyle data in recent years. 
+The goal of personalized medicine is to reverse that trend by using data to predict and prevent disease. So while most current systems fail to bridge the gap between genomic insights, real-time physiological tracking like apple watches, and clinical health records, I propose a multi-modal system to act as a home base for the outlets to interact. CoralMD is an interpretable, multi-modal dashboard designed to bring these domains together and make personalized, proactive care accessible for both clinicians and patients.
+
+
+While genomics, wearables, and electronic health records (EHRs) have individually transformed medical data collection, integrating them into a cohesive, interpretable model remains difficult. 
+Research highlights issues in datasets like bias and lack of explainability in clinical AI systems. 
+Existing machine learning approaches often look to prioritize accuracy at the expense of transparency, creating black-box models that clinicians cannot trust entirely as they are being told what to do. 
+Another problem that exists is the lack of a dataset that encompasses all modes of data, making a related model across each avenue very hard. Thus, generalization is difficult when population-level genomic data overrepresents certain ethnicities.
+
+
+CoralMD will address these challenges through a machine learning framework that integrates genomic (GRCh38, 1000 Genomes, ClinVar, gnomAD), wearables (Apple Watch, OhioT1DM), and Electronic Health Record (MIMIC-IV) datasets. 
+We can bring these streams together in a model that works together with each outlet, despite not having one dataset that is all encompassing
+CoralMD’s modular architecture will allow clinicians to see how genetic predispositions interact with real-time information and medical history to shape health risk.
+
+
+The project must overcome several technical hurdles: aligning multi-modal data of differing time scales and formats, preserving privacy, and ensuring fairness in model predictions, all while delivering an accurate product. 
+To validate the system, CoralMD will benchmark predictive models using metrics such as accuracy, SHAP-based visualizations are popular among other personalized medicine literature, so the aim is to use this to expose model reasoning. A prototype dashboard built in Streamlit will demonstrate how interpretability can create clinician trust.
+
+
+If successful, CoralMD will illustrate a scalable pathway toward \textbf{Medicine 3.0}, where prediction, prevention, and patient participation become standard practice. Scalability will be achieved hopefully in the future, by switching it to AWS in order to make it a fully usable platform.
+The project’s integration of ethical design, explainable AI, and multi-modal data could advance how clinicians and patients interact with health information. 
+Future work will explore scaling the system with larger datasets and integrating real clinician feedback to refine both usability and fairness.
+
+
+\section{Literature Survey}
+
+\subsection{AI and Data-Driven Personalized Medicine}
+Studies such as \cite{lotfi2025} and \cite{ballard2024} explore frameworks combining genomic, wearable, and EHR data for individualized treatment planning. 
+These works report high predictive performance (e.g., accuracy $\approx$ 94\%, AUC $\approx$ 0.98) but often sacrifice interpretability. 
+CoralMD builds upon these efforts by prioritizing model transparency and clinician usability by not directing the clinician, but actually letting them interpret the model by their knowledge.
+
+\subsection{Explainability and Trust in Clinical AI}
+Research by \cite{sadhu2023} and \cite{goetz2018} emphasize the importance of interpretable AI and user-centered design for clinical decision-making. 
+Their findings support CoralMD’s design choice to integrate SHAP visualizations and transparent model logic to promote trust among healthcare providers.
+
+\subsection{Applications in Clinical Decision Support and Visualization}
+\cite{im2024}, \cite{patterson2024}, and \cite{wang2024} illustrate how visualization-driven systems enhance clinical interpretation. 
+Their focus on user interface design and model explainability directly informs CoralMD’s dashboard layer, which will visualize genomic, metabolic, and clinical data in real time.
+
+\subsection{Ethical and Generalization Challenges}
+Across studies, recurring concerns include fairness, data security, and equity in clinical AI. 
+CoralMD addresses these by adopting fairness metrics, population-level normalization, and a privacy-first data handling strategy informed by \cite{erickson2025} and \cite{brittain2017}.
+
+
+\section{Proposal for New Contribution}
+
+\subsection{Motivation, Aims, and Objectives}
+\begin{itemize}
+    \item Build a prototype that integrates multi-modal health data.
+    \item Provide interpretable ML outputs rather than black-box scores.
+    \item Support clinician and patient decision-making ethically.
+    \item Demonstrate the feasibility of equitable personalized medicine tools.
+\end{itemize}
+
+\subsection{Research Design and Methods}
+\textbf{Data Sources:}
+Genomic: GRCh38, 1000 Genomes, ClinVar, gnomAD. \\
+Wearable: Apple Watch/Fitbit dataset, OhioT1DM CGM data. \\
+EHR: MIMIC-IV de-identified hospital dataset.
+
+\textbf{Technology Stack:} Python (Pandas, PyTorch, Scikit-learn), PostgreSQL, Streamlit dashboard, AWS for scalability.
+
+\textbf{Modeling and Evaluation:} Multi-modal feature integration, SHAP interpretability, metrics including Accuracy, Precision, Recall, F1, and Fairness indices.
+
+\textbf{Deliverables:} Interactive CoralMD prototype, data integration pipeline, and visualization module.
+
+
+\section{Ethical Considerations}
+% =============================
+% ETHICS AND REFLECTION
+% =============================
+\subsection{The Ethics of Representation}
+
+When creating this project, a lot of thought went into ethics and consideration of the effect of this tool. In turn, when designing CoralMD’s dashboard, ethical questions came from not only what data is used but from how results are represented. 
+Mahony and Hulme’s analysis of the IPCC’s \emph{“burning embers”} diagram \cite{mahony2012colour} does a good job describing this project's intention of handling how visualizations can hold power or directly influence based on the wrong factors. In the paper, a color gradient intended to summarize scientific consensus became a persuasive tool that shaped public and policy understanding of climate risk. Their study demonstrates that risk visualizations are never neutral, they embody aesthetic and moral choices that can direct interpretation. If you colored your risk score yellow at $75$, but green at $76$ the human brain affilitates the green result with a much healthier being, than someone who may only be one 'overall point' lower, but presented in a different color range. Thus, in the context of personalized medicine, this warns against dashboards that translate probabilistic risk into simple scores or red-flag icons that might implicitly tell clinicians what to do, whether this is intentional or not.
+
+CoralMD, therefore, avoids “traffic-light” style cues or deterministic scores. 
+Instead, it uses transparent model explanations that focus on integrating visualizations. This is done to help practitioners explore why certain variables influence predictions instead of just demanding they do so. Following Mahony and Hulme, the goal is not to produce unanimity through visualization but to invite informed interpretation. This allows the clinician to remain the reasoning agent, not the system’s passive recipient. This ethical stance shows the value of interpretability as a form of humility, meaning the interface must reveal the model’s logic while resisting the temptation to declare a single truth.
+
+\subsection{The Ethics of Comparison and Normalization}
+
+Dumit and de Laet’s \emph{“Curves to Bodies”} \cite{dumit2014curves} traces how statistical methods such as growth charts, calorie tables, and biomedical curves do not merely describe human variation. Instead, they produce societal norms about what counts as healthy, normal, or deviant. The presentation of data can prevent users from framing the interpretation in reality, and instead forces them into tidy categories, which inevitably alters social assumptions and beliefs. When done incorrectly with health data, these practices can make certain presentations appear as deficiency, reinforcing gendered, racial, or socioeconomic stereotypes.
+
+CoralMD confronts this problem directly. 
+By integrating genomic, wearable, and EHR data, it risks reproducing existing inequities if normalization is applied in a non critical manner. The platform is then responsible of avoiding these inequities and will include fairness checks across demographic subgroups and directly mentions uncertainty ranges rather than “ideal” baselines. Once again putting the power to the interpreter, in an effort to mitigate bias in the tool.
+Instead of comparing a patient to an universal model applied to everyone, CoralMD wishes to emphasize trends and contextual explanations focused solely on the person at hand, which is what Dumit and de Laet might call plural curves rather than a single normative one. The ethical goal here is to make data comparison truthful, and give it the ability to acknowledge variability rather than shortening the scope and forcing it into misleading averages.
+
+\subsection{The Stakes of Precision}
+Both Mahony and Hulme’s \emph{burning embers} and Dumit and de Laet’s calorie charts highlight how data can mislead through oversimplification. 
+In medicine, this danger even more magnified. A visualization does more than influence decisions, it can shape treatments or mask existing bias. 
+So, CoralMD treats every data comparison as a moral act, similar to Dumit’s call for truthful comparison. Each chance, like a genomic variant vs. population frequency or a heart-rate trend vs. a baseline, must be justified and contextualized. The ethical challenge here is not just to predict accurately but also to communicate risk responsibly. Addressing this problem at all is a very important part of the process and is often overlooked in creating an unassuming model that is supposed to be helpful. Precision must always be discussed side by side with honesty about uncertainty as the stakes of misrepresentation are directly human in personalized medicine.
+
+\subsection{Predictive Power to Ethical Power}
+
+Finally, Coral must recognize that predictive power is also social power. To visualize risk is to make a claim about whose health matters, whose data counts, and how the future should be interpreted. Following Mahony and Hulme’s warning against consensus driven simplification and Dumit and de Laet’s critique of norm forming graphs, CoralMD’s ethical stance is grounded in interpretability, diversity, and transparency. Its goal is not to persuade but to enable understanding, turning data science from an authority that directs clinical practice into a collaborator that supports it. Ultimately, ethical data science is not only about producing correct predictions, it is about empowering human reasoning through clarity and context.
+
+% =============================
+% Example Bib Entries
+% =============================
+% Add these to your .bib file if not already present:
+% @article{mahony2012colour,
+%   title={The Colour of Risk: An Exploration of the IPCC’s “Burning Embers” Diagram},
+%   author={Mahony, Martin and Hulme, Mike},
+%   journal={Spontaneous Generations: A Journal for the History and Philosophy of Science},
+%   volume={6},
+%   number={1},
+%   pages={75--89},
+%   year={2012}
+% }
+
+% @incollection{dumit2014curves,
+%   title={Curves to Bodies},
+%   author={Dumit, Joseph and de Laet, Marianne},
+%   booktitle={Routledge Handbook of Science, Technology, and Society},
+%   publisher={Routledge},
+%   year={2014},
+%   pages={71--82}
+% }
+
+
+
+
+\newpage
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
