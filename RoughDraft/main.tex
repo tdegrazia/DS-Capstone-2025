@@ -1,0 +1,377 @@
+\documentclass[sigconf]{acmart}
+
+
+\setcopyright{none}
+\copyrightyear{2025}
+\acmYear{2025}
+\acmDOI{} 
+\acmConference[DS 190]{Pomona College DS 190 Senior Seminar}{Fall 2025}{Claremont, CA}
+\acmISBN{} 
+\acmPrice{}
+\settopmatter{printacmref=false} 
+\pagestyle{plain}               
+
+
+\title[CoralMD: A Multi-Modal Dashboard]{CoralMD: An Attempt to Redefine the Healthcare System -- A Multi-Modal Dashboard for Personalized Medicine}
+
+\author{Tanner DeGrazia}
+\affiliation{%
+  \institution{Pomona College}
+  \city{Claremont}
+  \state{California}
+  \country{USA}
+}
+\email{trdh2022@mymail.pomona.edu} 
+
+\renewcommand{\shortauthors}{DeGrazia}
+
+%
+\keywords{personalized medicine, clinical decision support, multimodal learning, machine learning, interpretability, ethics}
+
+\begin{document}
+
+\begin{abstract}
+Modern healthcare systems often remain reactive, addressing disease only after symptoms appear.
+CoralMD is a data-driven prototype dashboard that integrates genomic, wearable, and electronic health record (EHR) data to enable interpretable, proactive healthcare insights.
+By combining machine learning and ethical data practices, the system aims to make precision medicine transparent, equitable, and actionable.
+This paper outlines the motivation, data architecture, and proposed design for CoralMD, along with a review of current literature and ethical challenges surrounding personalized healthcare technologies.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Modern healthcare is a system that is focused on reacting to disease. Cancer, heart disease, neurodegenerative disease, and diabetes are four of the leading causes of death in the United States. None of them are treated in a manner where prevention is the goal. Our current healthcare system is largely reactive, intervening only after illness occurs, despite an extreme growth in accessible biological and lifestyle data in recent years.
+The goal of personalized medicine is to reverse that trend by using data to predict and prevent disease based on the individual it treats, breaking away from the one-size-fits-all methods that exist. So while most current systems fail to bridge the gap between genomic insights, real-time physiological tracking like Apple Watches, and clinical health records, I propose a multi-modal system to act as a home base for the outlets to interact. CoralMD (the name of the dashboard) is an interpretable, multi-modal dashboard designed to bring these domains together and make personalized, proactive care accessible for both clinicians and patients.
+
+While genomics, wearables, and electronic health records (EHRs) have individually transformed medical data collection, integrating them into a cohesive, interpretable model remains difficult.
+Research highlights issues in datasets like bias and lack of explainability in clinical AI systems.
+Existing machine learning approaches often look to prioritize accuracy at the expense of transparency, creating black-box models that clinicians cannot trust entirely as they are being told what to do.
+Another problem that exists is the lack of a dataset that encompasses all modes of data, making a related model between each avenue very hard to find or create. Thus, generalization is difficult when population-level genomic data under-represents certain ethnicities.
+
+CoralMD will address these challenges through a machine learning framework that integrates genomic (GRCh38, 1000 Genomes, ClinVar, gnomAD), wearables (Apple Watch, OhioT1DM), and electronic health record (MIMIC-IV) datasets.
+We can bring these streams together in a model that works together with each outlet, despite not having one dataset that is all-encompassing. CoralMD’s architecture will allow clinicians to see how genetic predispositions interact with real-time information and medical history to shape health risk.
+
+The project must overcome several technical hurdles: aligning multi-modal data of differing time scales and formats, preserving privacy, and ensuring fairness in model predictions, all while delivering an accurate product.
+To validate the system, CoralMD will benchmark predictive models using metrics such as accuracy; detailed visualizations are popular among other medicine literature, but here we will focus on objectivity, to expose model reasoning. A prototype dashboard built in Streamlit will demonstrate how this idea of interpretability can create clinician trust.
+
+If successful, CoralMD will illustrate a scalable pathway toward \textbf{Medicine 3.0} (a term coined by longevity scientist Peter Attia, MD), where prediction, prevention, and patient participation become standard practice. Scalability will hopefully be achieved in the future by switching our system to AWS in order to make it a fully usable platform.
+The project’s integration of ethical design, explainable AI, and multi-modal data could ultimately advance how clinicians and patients interact with health information.
+
+\section{Literature Survey}
+
+Personalized medicine has increasingly shifted toward the integration of multimodal health data, including genomic sequences, wearable sensor streams, and electronic health records, all to create forward-looking, individualized risk predictions. Across recent IEEE Robotics and Automation Letters (I–RAL) papers, several recurring themes appear: (1) trajectory-based clinical prediction, (2) clinician-aligned automation and human–AI collaboration, (3) decision-support models for specialized clinical workflows, and (4) concerns related to interpretability, fairness, and multimodal integration. These themes have directly created CoralMD’s design philosophy and highlight both the technical opportunities and ethical challenges associated with personalized medicine systems.
+
+\subsection{AI and Data-Driven Clinical Trajectory Prediction}
+
+A growing body of work focuses on modeling disease trajectories rather than static outcomes, meaning that we have begun the transition to emphasizing and treating quality of life over length of life.
+Hou et al.\ propose a hybrid CNN–GRU model for real-time sepsis prediction, updating estimates every two hours to distinguish between fast-decline and slow-recovery phenotypes~\cite{hou2025}.
+This phenotype-centered approach demonstrates how real-time physiological signals can enable actionable early interventions, an idea central to the creation of CoralMD and its emphasis on future-focused, interpretable risk models.
+
+Du et al.\ extend this idea with a graph-based representation of the state of ICU patients, embedding causal relationships between organs, interventions, and outcomes~\cite{du2025}. Their model supports clinician “what-if” reasoning by simulating how treatments propagate across organ systems. Trevena et al.\ similarly construct a digital-twin framework that maps patient pathways into a directed acyclic graph stored in the database called Neo4j, enabling exploratory simulation of physiological responses~\cite{trevena2022}. Together, these papers highlight the importance of modeling how health evolves over time, motivating CoralMD’s design for interpretable trajectory prediction that spans streams of data.
+
+\subsection{Automation, Clinical Workflow Support, and Human–AI Collaboration}
+
+A second theme focuses on the use of AI to automate clinical tasks and support clinician workflow.
+Huang et al.\ develop an imitation-learning-based robotic ultrasound system capable of following clinical imaging protocols autonomously~\cite{huang2021}. Bernardes et al.\ create a robotic needle trajectory correction mechanism that compensates for soft-tissue deflection in MRI-guided procedures, breaking barriers and achieving millimeter-level precision without reinsertion~\cite{bernardes2024}.
+While these systems focus on automating certain procedures, they show an emerging clinical paradigm of closed-loop, data-responsive systems that aid human expertise rather than completely replacing it. The goal is not for tech to do all of the work; it is to work as a team with the highly skilled clinicians who interact with it.
+
+Sanz-Pena et al.\ further demonstrate personalized automation through a fully 3D-printed ankle exoskeleton designed to deliver individualized torque assistance based on patient-specific gait patterns~\cite{sanzpena2023}. Their work underscores the value of adaptable, user-specific assistive technology, an insight that CoralMD is extremely committed to: individualized model outputs that respond dynamically to a specific patient’s real-time data.
+
+\subsection{Clinical Decision Support and Risk-Focused Modeling}
+
+Another line of research focuses on predictive modeling for targeted clinical decision support.
+Zhu et al.\ develop a transition-flow model to predict 7 and 30 day revisit risk for elderly diabetes patients with fall-related injuries, trying to identify intervention points~\cite{zhu2021}. Additionally, Eskandari and Lee apply Markov Decision Processes to optimize postoperative care plans after full joint replacement, integrating performance and patient-reported outcomes to determine cost-effective rehabilitation schedules~\cite{eskandari2022}. These models demonstrate how structured clinical data can reveal decision-relevant patterns, mirroring CoralMD’s emphasis on actionable risk contributions rather than black-box scores.
+
+Similarly, Li et al.\ examine system-level decision making through an optimization model that helps hospitals allocate resources between in-person and e-visit services~\cite{li2024}. Their results highlight how digital health tools can improve efficiency and accessibility, contextualizing how CoralMD must integrate into real-world clinical workflows and encouraging the possibility of the system of Medicine 3.0 finding a place in the industry.
+
+\subsection{Ethical, Interpretability, and Generalization Challenges}
+
+Across all studies, several challenges emerge that CoralMD directly addresses.
+First, most high-performing AI systems risk becoming opaque, limiting clinician trust. Although trajectory models and graph-based systems offer partial interpretability, many reviewed works still prioritize accuracy over transparency. CoralMD responds by incorporating visualizations focused on objectivity, uncertainty intervals, and clinician-driven comparison tools to put an emphasis on explainability.
+
+Second, fairness and generalization remain persistent issues, as many datasets in robotics and critical care AI are institution-specific or demographically weak. Without attention to these gaps, predictive systems risk reinforcing structural biases. CoralMD will look to address this through population-level normalization, equity checks across subgroups, and explicit reporting of uncertainty.
+
+Finally, existing studies rarely attempt true multimodal integration. Most focus on either physiological signals, robotic data, or clinical outcomes in isolation. CoralMD contributes to the industry by integrating genomic (GRCh38, ClinVar, gnomAD), wearable (CGM, Apple Watch), and EHR (MIMIC-IV) data streams within a single modeling and visualization framework. This addresses one of the major limitations identified in the literature and supports a more holistic, patient-centered approach to prediction and prevention.
+
+\section{Proposal for New Contribution}
+
+While prior research demonstrates major advances in trajectory prediction, clinical automation, and decision-support modeling, no existing system integrates genomic, wearable, and EHR data into a single interpretable platform designed for proactive, personalized medicine. CoralMD fills this gap by proposing a unified, clinician-centered dashboard (with a patient portal too) that merges multimodal data streams and generates transparent, individualized risk assessments. This section outlines the project’s novel contributions, research objectives, system design, and methodological approach.
+
+\subsection{Motivation and Novel Contribution}
+
+Despite rapid progress in clinical AI, three gaps remain unaddressed in the current literature:
+(1) predictive models rarely combine genetics, real-time physiological data, and historical EHR information; (2) even high-performing systems often lack interpretability; and (3) few tools are designed to support proactive, rather than reactive, clinical reasoning. CoralMD proposes a solution by integrating multimodal datasets into a single risk-modeling framework paired with explainable visualizations.
+
+The core contribution of CoralMD is the development of a prototype dashboard that allows clinicians to explore how genomic predispositions interact with wearable sensor trends and past medical history. Unlike existing systems that offer opaque scores or prescriptive recommendations, CoralMD provides interactive explanations that help users understand \textit{why} a prediction was made and which modifiable variables most strongly influence future outcomes.
+
+\subsection{Research Objectives}
+
+The project is organized around four primary research objectives:
+
+\begin{enumerate}
+    \item \textbf{Integrate multimodal health data:} Combine genomic variant information, continuous wearable sensor streams, and structured EHR features into a unified modeling framework.
+    \item \textbf{Develop interpretable machine learning models:} Prioritize transparency through model choice, feature-level explanations, and uncertainty-aware outputs.
+    \item \textbf{Design a clinician-centered interface:} Create a dashboard that surfaces actionable insights without dictating decisions, preserving clinician autonomy.
+    \item \textbf{Evaluate fairness and generalizability:} Assess whether predictions vary across demographic subgroups and quantify model performance across data types.
+\end{enumerate}
+
+These objectives position CoralMD as a new approach to predictive healthcare—one that aims not merely to classify disease risk, but to help clinicians reason through the mechanisms behind it to allow them to act early.
+
+\subsection{System Architecture and Project Design}
+
+CoralMD is structured around a flexible and expandable architecture that mirrors the multimodal nature of the data:
+
+\begin{itemize}
+    \item \textbf{Data Ingestion Layer:} Imports genomic (GRCh38, ClinVar, gnomAD), wearable (Apple Watch, Fitbit, OhioT1DM), and EHR (MIMIC-IV) data. Each data stream is processed through dedicated pipelines for normalization, alignment, and quality control.
+
+    \item \textbf{Feature Integration Module:} Synchronizes features across vastly different timescales. Genomic variants are encoded as static risk factors, EHR features as past episode events, and wearable data as a high-frequency time series. A multimodal schema enables concatenation of modeling strategies despite being different input streams.
+
+    \item \textbf{Modeling Layer:} Combines classical ML models (logistic regression, gradient boosting) and deep learning architectures suitable for sequential data. A hopeful addition is SHAP-based interpretability tools that reveal feature contributions at both the sample and group levels.
+
+    \item \textbf{Visualization Dashboard:} Built in Streamlit, the dashboard displays risk trajectories, variant interpretations, physiological trends, and explanation plots. A backend of SQLite will help patients input their data. Clinicians can interact with model outputs, compare scenarios, or inspect uncertainty ranges.
+
+    \item \textbf{Scalability and Deployment:} The system is designed with eventual cloud deployment in mind, hopefully using AWS for database storage, model hosting, and real-time data processing after the prototype is completed.
+\end{itemize}
+
+The design emphasizes modularity and interpretability, with each data component remaining separable, each modeling step being transparent, and each prediction being able to be traced back to its contributing factors.
+
+\subsection{Methods}
+
+The methodological approach integrates data engineering, machine learning, evaluation, and user-centered design:
+
+\paragraph{Data Sources.}
+Genomic data includes population allele frequencies and variant annotations (ClinVar, gnomAD).
+Wearable data comes from CGM and smartwatch sensors (heart rate, steps, HRV). EHR data uses MIMIC-IV structured fields such as vitals, labs, medications, and ICD codes.
+
+\paragraph{Modeling Strategy.}
+The project uses a two-stage modeling pipeline:
+(1) static risk modeling from genomic/EHR features, and
+(2) dynamic trend modeling from wearable time series.
+Model outputs are fused using late integration to produce a single individualized risk estimate. The genetic aspect of the modeling will be similar to that of a genetic risk screening done by a company such as 23andMe.
+
+\paragraph{Interpretability.}
+SHAP values, uncertainty intervals, and partial-dependence curves can display the influence of certain features.
+The dashboard highlights modifiable factors (e.g., glucose stability, step count trends) to help clinicians identify meaningful intervention points.
+
+\paragraph{Evaluation.}
+Performance will be assessed using accuracy, precision, recall, F1 score, AUROC, and calibration curves. Fairness metrics (demographics, equality of opportunity) will be examined across subgroups. Qualitative evaluation will involve testing whether explanations are readable and clinically plausible.
+
+\subsection{Significance of Contribution}
+
+By unifying genetic predispositions, real-time physiological data, and clinical history, CoralMD offers a level of personalization not yet represented in existing clinical AI systems. Its emphasis on interpretability, ethical design, and clinician autonomy positions it as a prototype for \textbf{Medicine 3.0}, a healthcare paradigm where prediction, prevention, and personalization are central. The proposed contribution advances both the technical and ethical foundations of precision medicine and lays groundwork for future large-scale clinical integration.
+
+
+
+\section{Data}
+
+CoralMD brings together three primary data flows, genomic, wearable, and electronic health record (EHR) data, all to try and emulate a real world precision medicine pipeline. 
+Because no single dataset contains all three for the same individuals, the prototype uses parallel data streams that are will be later integrated with each other at the modeling portion.
+This section describes the structure, preprocessing, and analytical role of each data source, as well as how the Streamlit prototype allows patients and practitioners to access the data.
+
+\subsection{Overview of Data Modalities}
+
+Each modality gives certain aspects of patient health to paint a full picture:
+
+\begin{itemize}
+    \item \textbf{Genomic data} capture relatively static genetic predispositions (e.g., cardiometabolic risk variants).
+    \item \textbf{Wearable data} capture high-frequency physiological and behavioral signals (e.g., heart rate, steps, calories).
+    \item \textbf{EHR data} capture clinical events, diagnoses, and laboratory measurements over time.
+\end{itemize}
+
+CoralMD treats genomic features as static covariates, wearable data as a continuous time series, and EHR data as a record of clinical status.
+
+\subsection{Wearable Data}
+
+Wearable data are derived from smartwatch like devices (Apple Watch / Fitbit) and are stored in CSV files such as \texttt{aw\_fb\_data.csv} and similar files that have been feature-engineered such as 
+
+(\texttt{data\_for\_weka\_aw.csv} \& \texttt{data\_for\_weka\_fb.csv}).
+The raw dataset includes both demographic context and continuous sensor streams. 
+Descriptive columns highlight:
+
+\begin{itemize}
+    \item \textbf{Demographics:} \texttt{age}, \texttt{gender}, \texttt{height}, \texttt{weight}
+    \item \textbf{Activity:} \texttt{steps}, \texttt{distance}, \texttt{calories}
+    \item \textbf{Cardiovascular:} \texttt{hear\_rate} (heart rate), \texttt{resting\_heart}
+    \item \textbf{Derived Features:} \texttt{entropy\_heart}, \texttt{entropy\_setps}, 
+    
+    \texttt{corr\_heart\_steps}, \texttt{norm\_heart}, \texttt{intensity\_karvonen}
+\end{itemize}
+
+These features allow CoralMD to move beyond static step counts and instead reason about volatility, coupling between activity and heart rate, and intensity relative to individual baselines.
+
+Before we dive deep, our preprocessing for wearable data includes:
+\begin{itemize}
+    \item modifying irregular observations to try and make a unified time grid (e.g., 5--15 minute or daily windows),
+    \item removing physiologically impossible values and obvious sensor artifacts.
+    \item imputing short gaps using simple interpolation or rolling means.
+    \item computing basic descriptors (mean, standard deviation, entropy) for each signal.
+    \item standardizing features (e.g., z-scores) so that patients with different absolute ranges can be compared.
+\end{itemize}
+
+The Streamlit module \texttt{4\_Wearables\_Explorer.py} reads these CSV files and exposes interactive plots of heart rate, steps, calories, and derived features, gives both patients and practitioners to visually inspect trends and variability before any model is applied.
+
+\subsection{Electronic Health Records (MIMIC-IV Subset)}
+
+The EHR component uses a subset of MIMIC-IV tables exported as compressed CSV files. 
+These tables encode demographics, hospital episodes, diagnoses, and laboratory results:
+
+\begin{itemize}
+    \item \textbf{\texttt{patients.csv.gz}:} patient-level variables such as \texttt{subject\_id}, \texttt{gender}, and \texttt{anchor\_age}.
+    \item \textbf{\texttt{admissions.csv.gz}:} encounter-level variables such as admission and discharge times, admission type, insurance, ethnicity, and \texttt{hospital\_expire\_flag}.
+    \item \textbf{\texttt{diagnoses\_icd.csv.gz}:} ICD codes associated with each hospital admission.
+    \item \textbf{\texttt{d\_icd\_diagnoses.csv.gz}:} a dictionary mapping ICD codes to human-readable descriptions and higher-level categories.
+    \item \textbf{\texttt{labevents.csv.gz}:} time-stamped lab measurements (e.g., glucose, electrolytes) with fields such as \texttt{charttime}, \texttt{valuenum}, \texttt{valueuom}, \texttt{ref\_range\_lower}, and \texttt{ref\_range\_upper}.
+    \item \textbf{\texttt{d\_labitems.csv.gz}:} metadata describing each lab test, including name, category, and default units.
+\end{itemize}
+
+From these tables, CoralMD constructs features such as:
+\begin{itemize}
+    \item demographic covariates (age, sex),
+    \item disease indicators (e.g., presence of diabetes, or cardiovascular disease),
+    \item lab-based risk factors (e.g., mean glucose, cholesterol,
+    \item trend features (e.g., slopes and variability of key lab values over time).
+\end{itemize}
+
+Preprocessing for EHR data includes:
+\begin{itemize}
+    \item joining diagnoses and lab events to admissions via \texttt{subject\_id} and \texttt{hadm\_id},
+    \item mapping ICD codes into broader disease groups for interpretability,
+    \item harmonizing lab units and filtering out impossible values using \texttt{d\_labitems},
+    \item aggregating repeated measurements into clinically meaningful windows (e.g., first 24 hours of a stay),
+    \item imputing missing labs with clinically reasonable strategies (population medians or last observation carried forward).
+\end{itemize}
+
+The \texttt{3\_EHR\_Explorer.py} Streamlit page connects directly to this portion of the project, enabling filtering by patient, admission, or lab item and plotting lab trajectories and diagnosis summaries. 
+This explorer serves both as an EDA tool and as a pedagogical view into how EHR features are constructed before modeling.
+
+\subsection{Genomic Risk Features}
+
+The current prototype does not use real patient-level genotypes and this is very much unfinished in our \emph{"rough draft!"} instead, it will implement a genomic risk layer modeled after commercial genetic risk assessments such as those provided by 23andMe.
+Population-level resources such as GRCh38, 1000 Genomes, ClinVar, and gnomAD provide the basic template:
+
+\begin{itemize}
+    \item GRCh38 defines the reference coordinates for location of interest in the genome.
+    \item 1000 Genomes and gnomAD provide ancestry-stratified allele frequencies.
+    \item ClinVar provides curated annotations of pathogenic, likely pathogenic, benign, and variants for relevant diseases.
+\end{itemize}
+
+In CoralMD, these sources are used to make a small set of synthetic genomic features per (simulated) patient, including:
+\begin{itemize}
+    \item binary flags for the presence of high-impact variants (e.g., \texttt{APOE} risk alleles),
+    \item risk score components for cardiometabolic disease,
+    \item population-based prior risk adjustments based on allele frequency profiles.
+\end{itemize}
+
+This design allows the modeling and visualization layers to be developed and evaluated without exposing real genetic data for ethical reasons. 
+In a future deployment, hopefully real genotype files could be parsed to populate the same feature schema, given the proper, and safe infrastructure.
+
+\subsection{Data Flow in the CoralMD Prototype}
+
+
+The Streamlit application operationalizes these datasets through separate but connected views:
+
+\begin{itemize}
+    \item \textbf{Patient Home (\texttt{1\_Patient\_Home.py}):} allows a patient to upload wearable CSV files or enter basic demographics. 
+    The backend parses these files into a \texttt{pandas} DataFrame, computes simple summary statistics, and calls lightweight risk functions in \texttt{ml\_models.py}.
+    Risk summaries and personalized insights are rendered alongside basic visualizations.
+
+
+
+  
+    \item \textbf{Practitioner Home (\texttt{2\_Practitioner\_Home.py}):} reads from a local SQLite database (\texttt{coralmd.sqlite3}) via helper functions in \texttt{db\_connect.py}.
+    This layer stores patient profiles and previously computed risk scores so that a practitioner can review and compare patients over time.
+
+
+
+
+    \item \textbf{EHR Explorer (\texttt{3\_EHR\_Explorer.py}):} loads the MIMIC-IV subset CSV files and provides filters for \texttt{subject\_id}, lab items, and ICD codes.
+    The explorer visualizes lab trajectories and diagnosis counts, helping users understand how EHR features relate to risk.
+
+
+    
+
+    \item \textbf{Wearables Explorer (\texttt{4\_Wearables\_Explorer.py}):} focuses on the \texttt{aw\_fb\_data.csv} and derived feature files, exposing distribution plots and time-series visualizations for heart rate, steps, calories, and variability measures.
+
+
+    \item \textbf{Model and Visualization Layer (\texttt{ml\_models.py}, visualizations.py):} 
+    wraps around the raw data to compute simple interpretable risk scores (e.g., cardiometabolic risk based on glucose and cholesterol proxies) and generate human-readable insights and Plotly visualizations.
+\end{itemize}
+
+\emph{These pages are all still work in progresses and hopefully have a lot of room to grow before the final draft!}
+
+
+
+\section{Analysis}
+
+Because CoralMD is an early-stage prototype, the analysis focuses on exploratory patterns within each modality and on showing how the current Streamlit implementation supports interpretable, clinician-aligned reasoning. \emph{This is definitely the area CoralMD lacks the most currently}
+
+\subsection{Exploratory Data Analysis}
+
+Initial exploration of the wearable dataset highlights physiological effects in simple measures such as heart rate, step count, and calorie expenditure. Entropy features and heart–step correlations reveal day to day stability and coupling between activity and cardiovascular response, which ultimately guide how the risk visualizations will be constructed. For example, if the user is noticed to not be very active, risk will increase for certain cardiovascular disesases and our other models will eventually react to this. Similarly, summary statistics from the MIMIC-IV subset show substantial variability in lab values such as glucose, electrolytes, and blood cell markers, showing that time trends, not single measurements, are very informative for modeling clinical risk.
+
+\subsection{Prototype Risk Models}
+
+The preliminary models implemented in \texttt{ml\_models.py} use light guidelines rather than full ML pipelines. These include rule based cardiometabolic risk indicators derived from glucose trends, resting heart rate, and activity patterns, as well as simple EHR made features such as diagnosis counts or lab notes. Although we do not yet predictive models in the formal sense, they serve the important purpose of establishing an “explanation-first” modeling structure that will later be replaced by more rigorous methods.
+
+\subsection{Visualization-Guided Insights}
+
+The current \texttt{visualizations.py} module enables interactive exploration of time-series signals, distributions, and features across streams. These visualizations exist to show that variability, rather than absolute values, often drives interpretability. For example, periods of unstable heart rate or highly erratic step patterns tend to align with higher risk estimates. In the EHR explorer, plotting laboratory trajectories makes it easy to identify abnormal or rapidly changing values that would warrant clinical attention, demonstrating how context in real time enhances understanding compared to static snapshots.
+
+\subsection{Early Multimodal Integration}
+
+While full multimodal access is not yet a thing for Coral, preliminary alignment work demonstrates how static genomic features, EHR records, and continuous wearable streams can be represented in a shared data schema. This early integration informs the dashboard structure and provides a foundation for later, integrating modeling once the data processing pipelines are complete.
+
+\subsection{Limitations of Current Analysis}
+
+The analysis remains constrained by the absence of real genomic data, simplified risk models, and a lack of patient level integration across modalities. Additionally, the prototype relies on small datasets and a SQLite backend rather than a scalable clinical infrastructure. These limitations will be addressed in the next phase through expanded datasets, heavier statistical modeling, and user testing with clinicians.
+
+
+
+
+
+
+
+
+
+\section{Ethical Considerations}
+
+\subsection{The Ethics of Representation}
+
+When creating this project, a lot of thought went into ethics and consideration of the effect of this tool. In turn, when designing CoralMD’s dashboard, ethical questions came from not only what data is used but from how results are represented.
+Mahony and Hulme’s analysis of the IPCC’s \emph{“burning embers”} diagram~\cite{mahony2012colour} does a good job describing this project's intention of handling how visualizations can hold power or directly influence based on the wrong factors. In the paper, a color gradient intended to summarize scientific consensus became a persuasive tool that shaped public and policy understanding of climate risk. Their study demonstrates that risk visualizations are never neutral; they embody aesthetic and moral choices that can direct interpretation. If you colored your risk score yellow at $75$, but green at $76$, the human brain affiliates the green result with a much healthier being than someone who may only be one “overall point” lower but presented in a different color range. Thus, in the context of personalized medicine, this warns against dashboards that translate probabilistic risk into simple scores or red-flag icons that might implicitly tell clinicians what to do, whether this is intentional or not.
+
+CoralMD, therefore, avoids “traffic-light” style cues or deterministic scores.
+Instead, it uses transparent model explanations that focus on integrating visualizations. This is done to help practitioners explore why certain variables influence predictions instead of just demanding they do so. Following Mahony and Hulme, the goal is not to produce unanimity through visualization but to invite informed interpretation. This allows the clinician to remain the reasoning agent, not the system’s passive recipient. This ethical stance shows the value of interpretability as a form of humility, meaning the interface must reveal the model’s logic while resisting the temptation to declare a single truth.
+
+\subsection{The Ethics of Comparison and Normalization}
+
+Dumit and de Laet’s \emph{“Curves to Bodies”}~\cite{dumit2014curves} traces how statistical methods such as growth charts, calorie tables, and biomedical curves do not merely describe human variation. Instead, they produce societal norms about what counts as healthy, normal, or deviant. The presentation of data can prevent users from framing the interpretation in reality and instead forces them into tidy categories, which inevitably alters social assumptions and beliefs. When done incorrectly with health data, these practices can make certain presentations appear as deficiency, reinforcing gendered, racial, or socioeconomic stereotypes.
+
+CoralMD confronts this problem directly.
+By integrating genomic, wearable, and EHR data, it risks reproducing existing inequities if normalization is applied in a non-critical manner. The platform is then responsible for avoiding these inequities and will include fairness checks across demographic subgroups and directly mention uncertainty ranges rather than “ideal” baselines. Once again, this puts the power to the interpreter, in an effort to mitigate bias in the tool.
+Instead of comparing a patient to a universal model applied to everyone, CoralMD wishes to emphasize trends and contextual explanations focused solely on the person at hand, which is what Dumit and de Laet might call plural curves rather than a single normative one. The ethical goal here is to make data comparison truthful and give it the ability to acknowledge variability rather than shortening the scope and forcing it into misleading averages.
+
+\subsection{The Stakes of Precision}
+
+Both Mahony and Hulme’s \emph{burning embers} and Dumit and de Laet’s calorie charts highlight how data can mislead through oversimplification.
+In medicine, this danger is even more magnified. A visualization does more than influence decisions; it can shape treatments or mask existing bias.
+So, CoralMD treats every data comparison as a moral act, similar to Dumit’s call for truthful comparison. Each chance, like a genomic variant versus population frequency or a heart-rate trend versus a baseline, must be justified and contextualized. The ethical challenge here is not just to predict accurately but also to communicate risk responsibly. Addressing this problem at all is a very important part of the process and is often overlooked in creating an unassuming model that is supposed to be helpful. Precision must always be discussed side by side with honesty about uncertainty, as the stakes of misrepresentation are directly human in personalized medicine.
+
+\subsection{Predictive Power to Ethical Power}
+
+Finally, Coral must recognize that predictive power is also social power. To visualize risk is to make a claim about whose health matters, whose data counts, and how the future should be interpreted. Following Mahony and Hulme’s warning against consensus-driven simplification and Dumit and de Laet’s critique of norm-forming graphs, CoralMD’s ethical stance is grounded in interpretability, diversity, and transparency. Its goal is not to persuade but to enable understanding, turning data science from an authority that directs clinical practice into a collaborator that supports it. Ultimately, ethical data science is not only about producing correct predictions; it is about empowering human reasoning through clarity and context.
+
+\section{Conclusion}
+
+Thus, CoralMD proposes a prototype for \textbf{Medicine 3.0}: a new healthcare frontier where prediction, prevention, and personalization are central rather than reactive, crisis driven care. By designing a multimodal dashboard that brings together genomic, wearable, and EHR data, this project plans a path toward clinical tools that are will not only be accurate but also interpretable, ethically grounded, and aligned with clinician goals. The Streamlit implementation, backed by a SQLite database and separate patient and practitioner facing views, shows how these data streams can be explored, summarized, and translated into simple, but helpful risk storybooks.
+
+At the same time, the current system is limited. The genomic layer uses simulated features rather than real genotypes, and the predictive models are lightweight, meaning the focus remains on data flow, interpretability, and fairness rather than true performance. Future work will involve tightening the multimodal pipeline. Meaning all data flows work together, giving the modeling layer much more rigorous statistical and machine learning methods, and conducting user studies with clinicians to evaluate whether CoralMD’s explanations are actually usable in practice. Ultimately, the goal is not just to build a dashboard, but to clarify what ethically responsible, data-driven personalized medicine should look like in a real clinical environment driven by the intersection of technology and science.
+
+I also have kept the formatting of the CS Project Proposal in hopes of continuing this next semester!
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+
+\end{document}
