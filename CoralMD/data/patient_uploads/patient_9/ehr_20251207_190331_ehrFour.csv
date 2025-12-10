@@ -1,0 +1,9 @@
+age,gender,date,admission_id,diagnosis_name,icd_code,lab_name,lab_value,systolic_bp,diastolic_bp,bmi,domain_flag_cardio,domain_flag_metabolic,domain_flag_neuro,domain_flag_cancer
+35,M,2012-09-14,ADM1,Allergic rhinitis,J30.9,,,112,70,22.0,0,0,0,0
+35,M,2016-03-03,ADM2,Overweight,E66.3,LDL cholesterol,125,126,82,27.5,0,0,0,0
+35,M,2016-03-03,ADM2,Overweight,E66.3,HbA1c,5.3,126,82,27.5,0,0,0,0
+35,M,2021-07-22,ADM3,Borderline hypertension,R03.0,LDL cholesterol,138,134,86,29.0,1,0,0,0
+35,M,2021-07-22,ADM3,Borderline hypertension,R03.0,HbA1c,5.6,134,86,29.0,0,0,0,0
+35,M,2024-11-10,ADM4,Elevated blood pressure reading without diagnosis of hypertension,R03.0,LDL cholesterol,152,138,88,30.5,1,1,0,0
+35,M,2024-11-10,ADM4,Elevated blood pressure reading without diagnosis of hypertension,R03.0,HbA1c,5.8,138,88,30.5,0,1,0,0
+35,M,2024-11-10,ADM4,Elevated blood pressure reading without diagnosis of hypertension,R03.0,Triglycerides,190,138,88,30.5,1,1,0,0

@@ -1,0 +1,9 @@
+subject_id,age,gender,encounter_id,encounter_date,diagnosis,lab_name,lab_value
+9,35,M,1,2018-06-15,Annual physical,LDL,125
+9,35,M,1,2018-06-15,Annual physical,HbA1c,5.4
+9,35,M,1,2018-06-15,Annual physical,Creatinine,0.9
+9,32,M,2,2015-09-10,Overweight,BMI,28.5
+9,35,M,3,2021-11-02,Elevated blood pressure reading without diagnosis of hypertension,SystolicBP,138
+9,35,M,3,2021-11-02,Elevated blood pressure reading without diagnosis of hypertension,DiastolicBP,88
+9,35,M,4,2023-03-20,Borderline hypertension,LDL,155
+9,35,M,4,2023-03-20,Borderline hypertension,HbA1c,5.8

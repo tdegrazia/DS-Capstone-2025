@@ -1,0 +1,7 @@
+variant_id,gene,effect,pathogenicity_score,condition
+rs7903146,TCF7L2,pathogenic,0.86,Type 2 diabetes susceptibility
+rs9939609,FTO,likely_pathogenic,0.82,Obesity risk
+rs2228671,LDLR,likely_pathogenic,0.81,Elevated LDL cholesterol
+rs2819742,APOE,benign,0.20,Alzheimer's disease susceptibility
+rs17782313,MC4R,likely_pathogenic,0.83,Obesity risk
+rs5186,AGTR1,likely_pathogenic,0.80,Hypertension susceptibility

@@ -1,0 +1,7 @@
+variant_id,gene,allele,condition,effect,pathogenicity_score,domain
+rs7903146,TCF7L2,CT,Type 2 diabetes risk,likely_pathogenic,0.80,metabolic
+var_fat1,FTO,AG,Increased BMI / obesity risk,likely_pathogenic,0.78,metabolic
+var_ldlr_mod,LDLR,CT,Moderate familial hypercholesterolemia,likely_pathogenic,0.77,cardio
+var_pcsk9_mod,PCSK9,GA,Borderline hypercholesterolemia modifier,variant_of_uncertain_significance,0.65,cardio
+rs1801133,MTHFR,CT,Homocysteine imbalance risk,likely_pathogenic,0.74,cardio
+rs6265,BDNF,AG,Weight regulation / appetite,variant_of_uncertain_significance,0.62,neuro

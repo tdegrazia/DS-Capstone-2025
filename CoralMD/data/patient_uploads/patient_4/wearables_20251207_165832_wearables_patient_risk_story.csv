@@ -1,0 +1,16 @@
+age,gender,admission_id,diagnosis,lab_name,lab_value
+18,M,1,Sports injury,LDL cholesterol,95
+18,M,1,Sports injury,HbA1c,5.0
+18,M,1,Sports injury,Creatinine,0.9
+25,M,2,Overweight / routine check,LDL cholesterol,115
+25,M,2,Overweight / routine check,HbA1c,5.4
+25,M,2,Overweight / routine check,Creatinine,1.0
+35,M,3,Hyperlipidemia,LDL cholesterol,145
+35,M,3,Hyperlipidemia,HbA1c,5.8
+35,M,3,Hyperlipidemia,Creatinine,1.1
+45,M,4,Hypertension and obesity,LDL cholesterol,155
+45,M,4,Hypertension and obesity,HbA1c,6.1
+45,M,4,Hypertension and obesity,Creatinine,1.3
+52,M,5,Type 2 diabetes and hyperlipidemia,LDL cholesterol,170
+52,M,5,Type 2 diabetes and hyperlipidemia,HbA1c,6.8
+52,M,5,Type 2 diabetes and hyperlipidemia,Creatinine,1.5

@@ -1,0 +1,9 @@
+variant_id,genes,high_impact,trait_domain
+1,"APOE",1,"neurodegenerative, cardiometabolic"
+2,"TCF7L2",1,"T2D, cardiometabolic"
+3,"FTO",1,"obesity, cardiometabolic"
+4,"PCSK9",0,"lipids, cardiometabolic"
+5,"LDLR",0,"lipids, cardiometabolic"
+6,"BRCA2",1,"cancer risk"
+7,"GCKR",0,"T2D, cardiometabolic"
+8,"APOE",0,"neurodegenerative"

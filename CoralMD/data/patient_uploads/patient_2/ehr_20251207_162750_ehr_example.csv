@@ -1,0 +1,13 @@
+date,patient_id,visit_type,primary_diagnosis,fasting_glucose,hba1c,ldl_cholesterol,total_cholesterol,sbp,dbp,hr_resting
+2021-01-10,1,outpatient,Routine checkup,92.1,5.2,138.4,193.1,121,77,72.5
+2021-07-18,1,outpatient,Routine checkup,95.3,5.3,136.2,191.0,122,78,71.4
+2022-01-26,1,outpatient,Routine checkup,97.8,5.5,133.5,188.6,123,79,70.8
+2022-08-05,1,outpatient,Impaired fasting glucose,100.9,5.6,129.1,184.3,124,80,69.7
+2023-02-12,1,outpatient,Impaired fasting glucose,103.1,5.7,126.4,181.5,125,81,68.9
+2023-09-01,1,outpatient,Impaired fasting glucose,106.5,5.9,122.8,178.9,126,82,67.4
+2024-03-10,1,outpatient,Type 2 diabetes – early,110.2,6.0,118.7,175.0,127,83,66.1
+2024-09-18,1,outpatient,Type 2 diabetes – early,112.9,6.1,115.2,171.8,128,84,65.3
+2025-03-29,1,outpatient,Type 2 diabetes – early,115.7,6.2,111.9,168.5,129,85,64.6
+2025-09-06,1,outpatient,Type 2 diabetes – early,118.4,6.3,108.3,165.2,130,86,63.9
+2026-03-16,1,outpatient,Type 2 diabetes – early,121.1,6.4,104.7,161.9,131,87,63.1
+2026-09-24,1,outpatient,Type 2 diabetes – early,123.5,6.5,101.2,158.7,132,88,62.4

@@ -1,0 +1,5 @@
+subject_id,gender,age_anchor,admission_age,admission_reason,diagnoses,ldl_mg_dl,hdl_mg_dl,triglycerides_mg_dl,sbp_mm_hg,hba1c_pct,fasting_glucose_mg_dl,alt_u_l,creatinine_mg_dl,egfr_ml_min
+1,M,52,22,Sports injury,"Knee injury",110,55,90,118,5.0,90,22,0.9,95
+1,M,52,34,Annual exam,"Overweight, Elevated blood pressure",135,48,160,132,5.6,98,30,1.0,90
+1,M,52,45,Chest discomfort,"Essential hypertension, Prediabetes",150,42,190,145,6.0,110,38,1.1,80
+1,M,52,52,Routine follow-up,"Essential hypertension, Type 2 diabetes without complications, Obesity",172,38,230,150,7.2,152,55,1.4,55

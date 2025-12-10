@@ -1,0 +1,9 @@
+gene,condition,pathogenicity_score,effect
+APOE,Alzheimer disease risk,0.75,likely_pathogenic
+TCF7L2,Type 2 diabetes mellitus,0.90,pathogenic
+FTO,Obesity,0.85,pathogenic
+LDLR,Familial hypercholesterolemia / coronary artery disease,0.92,pathogenic
+PCSK9,Coronary artery disease,0.88,pathogenic
+MC4R,Obesity,0.80,likely_pathogenic
+GCK,Monogenic diabetes (MODY2),0.60,variant_of_unknown_significance
+HNF1A,Monogenic diabetes (MODY3),0.40,benign

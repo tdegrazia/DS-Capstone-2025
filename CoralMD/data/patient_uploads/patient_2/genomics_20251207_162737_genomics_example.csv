@@ -1,0 +1,61 @@
+patient_id,variant_id,rsid,gene,disease_trait,consequence,risk_direction,effect_size_log_odds,minor_allele_frequency,clinical_significance
+1,1,rs3456781,APOE,Coronary artery disease,missense,risk,0.123,0.112,benign
+1,2,rs7890123,TCF7L2,Type 2 diabetes,regulatory,risk,0.174,0.214,risk modifier
+1,3,rs2301456,FTO,Obesity,missense,risk,0.201,0.327,likely benign
+1,4,rs5678901,LDLR,Hyperlipidemia,missense,risk,0.147,0.081,benign
+1,5,rs9012345,PCSK9,Coronary artery disease,regulatory,protective,-0.094,0.231,uncertain
+1,6,rs1122334,MC4R,Obesity,missense,risk,0.162,0.276,risk modifier
+1,7,rs5566778,SLC30A8,Type 2 diabetes,regulatory,protective,-0.072,0.195,benign
+1,8,rs9988776,PPARG,Type 2 diabetes,missense,risk,0.139,0.088,uncertain
+1,9,rs4433221,HNF1A,Hyperlipidemia,synonymous,risk,0.082,0.333,benign
+1,10,rs7788990,APOE,Coronary artery disease,intron,protective,-0.053,0.412,likely benign
+1,11,rs1234098,APOE,Coronary artery disease,missense,risk,0.176,0.067,benign
+1,12,rs5678123,TCF7L2,Type 2 diabetes,regulatory,risk,0.121,0.154,uncertain
+1,13,rs9012783,FTO,Obesity,regulatory,risk,0.102,0.284,risk modifier
+1,14,rs3456129,LDLR,Hyperlipidemia,missense,risk,0.137,0.119,benign
+1,15,rs7890654,PCSK9,Coronary artery disease,regulatory,protective,-0.083,0.243,uncertain
+1,16,rs1122456,MC4R,Obesity,intron,risk,0.095,0.295,likely benign
+1,17,rs5566987,SLC30A8,Type 2 diabetes,missense,protective,-0.061,0.205,benign
+1,18,rs9988665,PPARG,Type 2 diabetes,regulatory,risk,0.112,0.135,risk modifier
+1,19,rs4433007,HNF1A,Hyperlipidemia,missense,risk,0.129,0.178,uncertain
+1,20,rs7788456,APOE,Coronary artery disease,synonymous,protective,-0.049,0.398,benign
+1,21,rs1234789,APOE,Coronary artery disease,missense,risk,0.188,0.094,risk modifier
+1,22,rs5678432,TCF7L2,Type 2 diabetes,regulatory,risk,0.132,0.211,benign
+1,23,rs9012110,FTO,Obesity,missense,risk,0.167,0.301,likely benign
+1,24,rs3456453,LDLR,Hyperlipidemia,regulatory,risk,0.119,0.086,benign
+1,25,rs7890321,PCSK9,Coronary artery disease,intron,protective,-0.071,0.256,uncertain
+1,26,rs1122678,MC4R,Obesity,missense,risk,0.141,0.269,risk modifier
+1,27,rs5566123,SLC30A8,Type 2 diabetes,regulatory,protective,-0.058,0.187,benign
+1,28,rs9988554,PPARG,Type 2 diabetes,missense,risk,0.126,0.143,uncertain
+1,29,rs4433999,HNF1A,Hyperlipidemia,regulatory,risk,0.108,0.167,benign
+1,30,rs7788332,APOE,Coronary artery disease,missense,protective,-0.064,0.421,likely benign
+1,31,rs1234671,APOE,Coronary artery disease,missense,risk,0.173,0.102,benign
+1,32,rs5678990,TCF7L2,Type 2 diabetes,regulatory,risk,0.118,0.223,risk modifier
+1,33,rs9012999,FTO,Obesity,missense,risk,0.159,0.309,likely benign
+1,34,rs3456997,LDLR,Hyperlipidemia,missense,risk,0.135,0.078,benign
+1,35,rs7890777,PCSK9,Coronary artery disease,regulatory,protective,-0.079,0.237,uncertain
+1,36,rs1122112,MC4R,Obesity,intron,risk,0.091,0.289,benign
+1,37,rs5566554,SLC30A8,Type 2 diabetes,missense,protective,-0.067,0.199,likely benign
+1,38,rs9988441,PPARG,Type 2 diabetes,regulatory,risk,0.109,0.139,risk modifier
+1,39,rs4433776,HNF1A,Hyperlipidemia,missense,risk,0.123,0.173,uncertain
+1,40,rs7788220,APOE,Coronary artery disease,synonymous,protective,-0.046,0.407,benign
+1,41,rs1234555,APOE,Coronary artery disease,missense,risk,0.181,0.098,risk modifier
+1,42,rs5678771,TCF7L2,Type 2 diabetes,regulatory,risk,0.124,0.217,benign
+1,43,rs9012554,FTO,Obesity,missense,risk,0.163,0.295,likely benign
+1,44,rs3456333,LDLR,Hyperlipidemia,regulatory,risk,0.116,0.083,benign
+1,45,rs7890112,PCSK9,Coronary artery disease,intron,protective,-0.076,0.249,uncertain
+1,46,rs1122990,MC4R,Obesity,missense,risk,0.138,0.273,risk modifier
+1,47,rs5566442,SLC30A8,Type 2 diabetes,regulatory,protective,-0.063,0.191,benign
+1,48,rs9988330,PPARG,Type 2 diabetes,missense,risk,0.121,0.147,uncertain
+1,49,rs4433665,HNF1A,Hyperlipidemia,regulatory,risk,0.111,0.171,benign
+1,50,rs7788118,APOE,Coronary artery disease,missense,protective,-0.059,0.414,likely benign
+1,51,rs1234888,APOE,Coronary artery disease,missense,risk,0.169,0.105,benign
+1,52,rs5678666,TCF7L2,Type 2 diabetes,regulatory,risk,0.120,0.219,risk modifier
+1,53,rs9012444,FTO,Obesity,missense,risk,0.161,0.301,likely benign
+1,54,rs3456222,LDLR,Hyperlipidemia,missense,risk,0.133,0.082,benign
+1,55,rs7890999,PCSK9,Coronary artery disease,regulatory,protective,-0.081,0.241,uncertain
+1,56,rs1122888,MC4R,Obesity,intron,risk,0.093,0.283,benign
+1,57,rs5566331,SLC30A8,Type 2 diabetes,missense,protective,-0.065,0.193,likely benign
+1,58,rs9988222,PPARG,Type 2 diabetes,regulatory,risk,0.114,0.141,risk modifier
+1,59,rs4433554,HNF1A,Hyperlipidemia,missense,risk,0.127,0.175,uncertain
+1,60,rs7788001,APOE,Coronary artery disease,synonymous,protective,-0.051,0.403,benign
